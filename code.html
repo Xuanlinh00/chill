@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+<title>Graduation 2026 • Xuân Linh</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  --bg: #0a0a0f;
+  --card: #16161f;
+  --accent: #ff6b9d;
+  --accent-light: #ffa7c4;
+  --gold: #ffd93d;
+  --purple: #a78bfa;
+  --text: #ffffff;
+  --text-gray: #9ca3af;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.playfair { font-family: 'Playfair Display', serif; }
+.dancing { font-family: 'Dancing Script', cursive; }
+
+/* Animated gradient background */
+.bg-animated {
+  background: linear-gradient(135deg, #0a0a0f 0%, #1a0b1f 50%, #0f0a1a 100%);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.bg-animated::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,107,157,0.1) 0%, transparent 70%);
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Smooth scroll container */
+.scroll-container {
+  height: 100vh;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hero section */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  position: relative;
+  scroll-snap-align: start;
+}
+
+.floating {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+/* Gallery slider */
+.gallery-container {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  margin: 2rem 0;
+  overflow: hidden;
+  border-radius: 32px;
+}
+
+.gallery-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-slide {
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.gallery-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 32px;
+}
+
+.gallery-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+  z-index: 10;
+}
+
+/* Navigation dots */
+.dots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 20;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.dot.active {
+  width: 24px;
+  border-radius: 4px;
+  background: var(--accent);
+}
+
+/* Cards */
+.card {
+  background: var(--card);
+  border-radius: 24px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:active {
+  transform: scale(0.98);
+}
+
+.glass {
+  background: rgba(22, 22, 31, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--purple) 50%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Buttons */
+.btn {
+  padding: 1rem 2rem;
+  border-radius: 16px;
+  border: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--purple) 100%);
+  color: white;
+  box-shadow: 0 8px 24px rgba(255,107,157,0.3);
+}
+
+.btn-primary:active {
+  transform: scale(0.95);
+}
+
+.btn-glass {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: white;
+  backdrop-filter: blur(10px);
+}
+
+/* Timeline */
+.timeline-item {
+  display: flex;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.timeline-time {
+  min-width: 70px;
+  text-align: right;
+}
+
+.timeline-content {
+  flex: 1;
+  padding: 1rem;
+  background: rgba(255,255,255,0.03);
+  border-radius: 16px;
+  border-left: 3px solid var(--accent);
+}
+
+/* Icon badge */
+.icon-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--purple) 100%);
+  margin: 0 auto 1rem;
+}
+
+/* Floating action button */
+.fab {
+  position: fixed;
+  bottom: 2rem;
+  right: 1.5rem;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--purple) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(255,107,157,0.4);
+  cursor: pointer;
+  z-index: 100;
+  border: none;
+  color: white;
+  transition: transform 0.3s;
+}
+
+.fab:active {
+  transform: scale(0.9);
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(10px);
+  z-index: 999;
+  display: none;
+  align-items: flex-end;
+  padding: 0;
+}
+
+.modal.show {
+  display: flex;
+  animation: fadeIn 0.3s;
+}
+
+.modal-content {
+  width: 100%;
+  max-height: 90vh;
+  background: var(--card);
+  border-radius: 32px 32px 0 0;
+  padding: 2rem 1.5rem;
+  overflow-y: auto;
+  animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+/* Form */
+input, textarea, select {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.05);
+  color: white;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: border-color 0.3s;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+textarea {
+  resize: none;
+  min-height: 100px;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Radio buttons */
+.radio-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.radio-option {
+  padding: 1rem;
+  border-radius: 12px;
+  border: 2px solid rgba(255,255,255,0.1);
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: center;
+}
+
+.radio-option input {
+  display: none;
+}
+
+.radio-option input:checked + .radio-label {
+  border-color: var(--accent);
+  background: rgba(255,107,157,0.1);
+}
+
+/* Countdown */
+.countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+.countdown-item {
+  text-align: center;
+  padding: 1.5rem 0.5rem;
+  background: rgba(255,255,255,0.03);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.countdown-value {
+  font-size: 2rem;
+  font-weight: 700;
+  display: block;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.countdown-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-gray);
+  margin-top: 0.5rem;
+}
+
+/* Header */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 50;
+  background: rgba(10, 10, 15, 0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.header-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: white;
+}
+
+.icon-btn:active {
+  transform: scale(0.9);
+  background: rgba(255,255,255,0.1);
+}
+
+/* Spacing utilities */
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.py-1 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+.py-2 { padding-top: 1rem; padding-bottom: 1rem; }
+
+.text-center { text-align: center; }
+.text-gray { color: var(--text-gray); }
+.text-sm { font-size: 0.875rem; }
+.text-xs { font-size: 0.75rem; }
+
+.flex { display: flex; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-1 { gap: 0.5rem; }
+.gap-2 { gap: 1rem; }
+
+/* Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-gold {
+  background: linear-gradient(135deg, rgba(255,217,61,0.2) 0%, rgba(255,107,157,0.2) 100%);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+}
+
+/* Pulse animation */
+.pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Section spacing */
+section {
+  padding: 2rem 1.5rem;
+  scroll-snap-align: start;
+}
+
+h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+p {
+  line-height: 1.6;
+  color: var(--text-gray);
+}
+
+/* Success animation */
+.success-check {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+}
+
+.checkmark {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: block;
+  stroke-width: 3;
+  stroke: var(--accent);
+  stroke-miterlimit: 10;
+  box-shadow: inset 0px 0px 0px var(--accent);
+  animation: fill 0.4s ease-in-out 0.4s forwards, scale 0.3s ease-in-out 0.9s both;
+}
+
+.checkmark-circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 3;
+  stroke-miterlimit: 10;
+  stroke: var(--accent);
+  fill: none;
+  animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark-check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+@keyframes stroke {
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes scale {
+  0%, 100% { transform: none; }
+  50% { transform: scale3d(1.1, 1.1, 1); }
+}
+
+@keyframes fill {
+  100% { box-shadow: inset 0px 0px 0px 30px var(--accent); }
+}
+</style>
+</head>
+<body>
+<div class="bg-animated"></div>
+
+<!-- Header -->
+<header class="header">
+  <div class="header-title">GRADUATION 2026</div>
+  <div class="header-actions">
+    <button class="icon-btn" onclick="shareInvitation()">
+      <span class="material-symbols-rounded">share</span>
+    </button>
+  </div>
+</header>
+
+<!-- Main scroll container -->
+<div class="scroll-container">
+  
+  <!-- Hero Section -->
+  <section class="hero">
+
+    
+    <h1 class="playfair gradient-text" style="font-size: 3rem; font-weight: 900; text-align: center; line-height: 1.1; margin-bottom: 1rem;">
+      Lễ Tốt Nghiệp
+    </h1>
+    
+    <div class="dancing" style="font-size: 2rem; text-align: center; color: var(--accent-light); margin-bottom: 0.5rem;">
+      Thạch Thị Xuân Linh
+    </div>
+    
+    <p class="text-center text-gray" style="font-size: 0.95rem; margin-bottom: 2rem;">
+      Ngành Công Nghệ Thông Tin<br>
+      Khóa 2022 - 2026
+    </p>
+    
+    <div class="text-center">
+      <button class="btn btn-glass" onclick="document.querySelector('.scroll-container').scrollTo({top: document.querySelector('.gallery-container').offsetTop - 100, behavior: 'smooth'})">
+        <span class="material-symbols-rounded">arrow_downward</span>
+        Xem Thêm
+      </button>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section>
+    <h2 class="playfair text-center">Khoảnh Khắc Đáng Nhớ</h2>
+    
+    <div class="gallery-container">
+      <div class="gallery-track">
+        <div class="gallery-slide">
+          <img src="img/1792510286922_258044197758077860_9138120530434765793_f2b202570924c40bc982499745c4e937.jpg" alt="Graduation">
+        </div>
+        <div class="gallery-slide">
+          <img src="img/1792510287030_258044197758077860_9138120530434765793_7eab9c7c89054bbb2161fde30c6d026a.jpg" alt="Graduation">
+        </div>
+        <div class="gallery-slide">
+          <img src="img/1792510287135_258044197758077860_9138120530434765793_c728aa4fa77466667c845f42fd4f5d26.jpg" alt="Graduation">
+        </div>
+        <div class="gallery-slide">
+          <img src="img/1792510287232_258044197758077860_9138120530434765793_20b7601ecbb6412506b1d7604bcb315a.jpg" alt="Graduation">
+        </div>
+        <div class="gallery-slide">
+          <img src="img/1792510287324_258044197758077860_9138120530434765793_4a351fa55fb90a0ac2811a8a44cb9f61.jpg" alt="Graduation">
+        </div>
+        <div class="gallery-slide">
+          <img src="img/1792510287392_258044197758077860_9138120530434765793_9f68b245c56f21aa7622c6a81e9dbb71.jpg" alt="Graduation">
+        </div>
+      </div>
+      
+      <div class="dots">
+        <span class="dot active" onclick="goToSlide(0)"></span>
+        <span class="dot" onclick="goToSlide(1)"></span>
+        <span class="dot" onclick="goToSlide(2)"></span>
+        <span class="dot" onclick="goToSlide(3)"></span>
+        <span class="dot" onclick="goToSlide(4)"></span>
+        <span class="dot" onclick="goToSlide(5)"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote Section -->
+  <section>
+    <div class="card glass" style="padding: 2rem;">
+      <div class="icon-badge">
+        <span class="material-symbols-rounded">format_quote</span>
+      </div>
+      <p class="playfair" style="font-size: 1.1rem; line-height: 1.8; text-align: center; color: white; font-style: italic;">
+        "Một chặng đường thanh xuân rực rỡ khép lại để mở ra sàn diễn tương lai rực rỡ hơn. Sự hiện diện và nụ cười của Thầy Cô, Gia đình cùng Bạn bè chính là khoảnh khắc lung linh nhất đối với Linh."
+      </p>
+    </div>
+  </section>
+
+  <!-- Countdown Section -->
+  <section>
+    <h2 class="playfair text-center">Đếm Ngược</h2>
+    <div class="countdown-grid">
+      <div class="countdown-item">
+        <span class="countdown-value" id="days">00</span>
+        <span class="countdown-label">Ngày</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-value" id="hours">00</span>
+        <span class="countdown-label">Giờ</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-value" id="minutes">00</span>
+        <span class="countdown-label">Phút</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-value" id="seconds">00</span>
+        <span class="countdown-label">Giây</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Event Info -->
+  <section>
+    <h2 class="playfair">Thông Tin Sự Kiện</h2>
+    <div class="card">
+      <div class="flex items-center gap-3 mb-3 pb-3" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <span class="material-symbols-rounded" style="color: var(--accent); font-size: 32px;">calendar_today</span>
+        <div>
+          <div style="font-weight: 700; font-size: 1.2rem; color: white;">24 tháng 10, 2026</div>
+          <div class="text-sm text-gray">Thứ Bảy</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="material-symbols-rounded" style="color: var(--gold); font-size: 32px;">schedule</span>
+        <div>
+          <div style="font-weight: 700; font-size: 1.2rem; color: white;">11:00 AM</div>
+          <div class="text-sm text-gray">Lễ trao bằng tốt nghiệp</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location Section -->
+  <section>
+    <h2 class="playfair">Địa Điểm</h2>
+    <div class="card" style="padding: 0; overflow: hidden;">
+      <div style="padding: 1.5rem;">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="material-symbols-rounded" style="color: var(--accent);">location_on</span>
+          <h3 style="margin: 0;">Trường ĐH Trà Vinh</h3>
+        </div>
+        <p class="text-sm text-gray">Số 126 Nguyễn Thiện Thành, Phường 5<br>TP. Trà Vinh, Tỉnh Trà Vinh</p>
+        <button class="btn btn-glass mt-2" onclick="openMap()" style="width: 100%;">
+          <span class="material-symbols-rounded">directions</span>
+          Chỉ Đường
+        </button>
+      </div>
+      <div style="height: 200px; width: 100%; background: #1a1a2e;">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.4126394043957!2d106.34162207573026!3d9.934896873928757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a0176e2d41a23d%3A0x39ac19cc5cdcd0f!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBUcsOgIFZpbmg!5e0!3m2!1svi!2s!4v1729507284567!5m2!1svi!2s" width="100%" height="100%" style="border:0; filter: grayscale(100%) invert(92%) contrast(83%);" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <section style="padding-bottom: 3rem;">
+    <div class="text-center">
+      <div class="dancing" style="font-size: 1.5rem; color: var(--accent-light); margin-bottom: 1rem;">
+        Hẹn gặp bạn! ✨
+      </div>
+      <p class="text-xs text-gray">
+        #LinhGraduation2026 • Made with ❤️
+      </p>
+    </div>
+  </section>
+
+</div>
+
+<!-- Floating Action Button -->
+<button class="fab" onclick="shareInvitation()">
+  <span class="material-symbols-rounded" style="font-size: 28px;">share</span>
+</button>
+
+<script>
+// Gallery
+let currentSlide = 0;
+const totalSlides = 6;
+
+function goToSlide(index) {
+  currentSlide = index;
+  updateGallery();
+}
+
+function updateGallery() {
+  const track = document.querySelector('.gallery-track');
+  const dots = document.querySelectorAll('.dot');
+  
+  track.style.transform = `translateX(-${currentSlide * 100}%)`;
+  
+  dots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === currentSlide);
+  });
+}
+
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % totalSlides;
+  updateGallery();
+}
+
+// Auto-play gallery
+setInterval(nextSlide, 4000);
+
+// Touch swipe for gallery
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.querySelector('.gallery-container').addEventListener('touchstart', e => {
+  touchStartX = e.changedTouches[0].screenX;
+});
+
+document.querySelector('.gallery-container').addEventListener('touchend', e => {
+  touchEndX = e.changedTouches[0].screenX;
+  handleSwipe();
+});
+
+function handleSwipe() {
+  if (touchEndX < touchStartX - 50) nextSlide();
+  if (touchEndX > touchStartX + 50) {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    updateGallery();
+  }
+}
+
+// Countdown
+function updateCountdown() {
+  const eventDate = new Date('October 24, 2026 11:00:00').getTime();
+  const now = new Date().getTime();
+  const distance = eventDate - now;
+  
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  
+  document.getElementById('days').textContent = String(days).padStart(2, '0');
+  document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+  document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+  document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+// Share function
+function shareInvitation() {
+  if (navigator.share) {
+    navigator.share({
+      title: 'Lễ Tốt Nghiệp • Thạch Thị Xuân Linh',
+      text: 'Trân trọng kính mời bạn đến dự lễ tốt nghiệp của Xuân Linh!',
+      url: window.location.href
+    }).catch(() => {});
+  } else {
+    navigator.clipboard.writeText(window.location.href);
+    alert('Đã sao chép link!');
+  }
+}
+
+// Map function
+function openMap() {
+  window.open('https://maps.google.com/?q=Trường Đại học Trà Vinh', '_blank');
+}
+
+
+</script>
+</body>
+</html>
